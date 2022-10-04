@@ -56,7 +56,54 @@ myHashTable = MyHashTable(50)
 myHashTable.set('gg', 321)
 myHashTable.set('hh', 456)
 
-
 print(myHashTable.data)
 print(myHashTable.get('gg'))
 print(myHashTable.keys())
+
+
+def firstRecurringCharacters(input):
+    arr = []
+    print(input)
+
+    for i in input:
+        for j in arr:
+            if i is j:
+                return i
+        arr.append(i)
+        print(arr)
+
+    return 'undefined'
+
+
+
+def firstRecurringCharacters2(input):
+    result = 'undefined'
+    map = MyHashTable(len(input))
+
+    for i in input:
+        if map.exist(i):
+            result = i
+            break
+
+        map.set(i, i)
+
+    print(map.keys())
+    return result
+
+
+def firstRecurringCharacters3(input):
+    result = 'undefined'
+    dict = {}
+
+    for i in input:
+        if dict.get(i):
+            result = i
+            break
+
+        dict[i] = 1
+
+    print(dict.keys())
+    return result
+
+
+print(firstRecurringCharacters([0, 1, 1, 0, 2, 4, 3]))
