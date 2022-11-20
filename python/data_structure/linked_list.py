@@ -78,6 +78,7 @@ class MyLinedList:
         node_list = []
 
         while current_node is not None:
+            # node_list.append(current_node)
             node_list.append(current_node['value'])
             current_node = current_node['next']
 
@@ -102,6 +103,32 @@ class MyLinedList:
 
         self.length -= 1
 
+    def reverse(self):
+        current_node = self.head
+        reverseLinkedList = MyLinedList(current_node['value'])
+        current_node = current_node['next']
+
+        while current_node is not None:
+            reverseLinkedList.prepend(current_node['value'])
+            current_node = current_node['next']
+
+        reverseLinkedList.print_list()
+
+    def reverse2(self):
+        prev_node = None
+        head_node = self.head
+        self.tail = head_node
+
+        while head_node:
+            next_node = head_node['next']
+            head_node['next'] = prev_node
+            prev_node = head_node
+            head_node = next_node
+
+        self.head = prev_node
+        self.tail['next'] = None
+        self.print_list()
+
 
 myLinkedList = MyLinedList(10)
 myLinkedList.append(5)
@@ -109,7 +136,8 @@ myLinkedList.prepend(4)
 myLinkedList.insert(2, 16)
 myLinkedList.print_list()
 
-myLinkedList.remove(3)
+# myLinkedList.remove(3)
 myLinkedList.print_list()
+myLinkedList.reverse2()
 
 # pprint.pprint(myLinkedList.head)
