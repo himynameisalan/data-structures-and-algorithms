@@ -61,11 +61,11 @@ print(myHashTable.get('gg'))
 print(myHashTable.keys())
 
 
-def firstRecurringCharacters(input):
+def firstRecurringCharacters(text):
     arr = []
-    print(input)
+    print(text)
 
-    for i in input:
+    for i in text:
         for j in arr:
             if i is j:
                 return i
@@ -75,34 +75,33 @@ def firstRecurringCharacters(input):
     return 'undefined'
 
 
-
-def firstRecurringCharacters2(input):
+def firstRecurringCharacters2(text):
     result = 'undefined'
-    map = MyHashTable(len(input))
+    mp = MyHashTable(len(text))
 
-    for i in input:
-        if map.exist(i):
+    for i in text:
+        if mp.exist(i):
             result = i
             break
 
-        map.set(i, i)
+        mp.set(i, i)
 
-    print(map.keys())
+    print(mp.keys())
     return result
 
 
-def firstRecurringCharacters3(input):
+def firstRecurringCharacters3(text):
     result = 'undefined'
-    dict = {}
+    dct = {}
 
-    for i in input:
-        if dict.get(i):
+    for i in text:
+        if dct.get(i):
             result = i
             break
 
-        dict[i] = 1
+        dct[i] = 1
 
-    print(dict.keys())
+    print(dct.keys())
     return result
 
 

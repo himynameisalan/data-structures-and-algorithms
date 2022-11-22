@@ -139,5 +139,5 @@ myLinkedList.print_list()
 # myLinkedList.remove(3)
 myLinkedList.print_list()
 myLinkedList.reverse2()
-
+print(myLinkedList.head)
 # pprint.pprint(myLinkedList.head)

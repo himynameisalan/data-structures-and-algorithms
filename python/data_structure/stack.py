@@ -78,11 +78,12 @@ class MyStack2:
         print(self.array)
 
 
-myStack = MyStack2()
+myStack = MyStack()
 myStack.printStack()
 myStack.push(1)
 myStack.printStack()
-myStack.push(2)
+myStack.pop()
+myStack.printStack()
 myStack.push(3)
 myStack.printStack()
 myStack.pop()
