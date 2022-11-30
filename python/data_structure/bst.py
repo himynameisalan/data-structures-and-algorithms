@@ -62,28 +62,71 @@ class MyBST:
 
         return current_node
 
-    def remove(self, value):
-        # initial nodes
-        parent_node = None
-        target_node = self.root
+    def bfs(self):
+        current_node = self.root
+        arr = list()
+        q_arr = list()
+        q_arr.append(current_node)
 
-        # current node is None
-        if target_node is None:
-            return
+        while len(q_arr) > 0:
+            current_node = q_arr.pop(0)
+            arr.append(current_node.value)
 
-        # find the target node
-        while target_node is not None:
-            if value == target_node.value:
-                break
+            if current_node.left is not None:
+                q_arr.append(current_node.left)
 
-            parent_node = target_node
+            if current_node.right is not None:
+                q_arr.append(current_node.right)
 
-            if value < target_node.value:
-                target_node = target_node.left
-            else:
-                target_node = target_node.right
+        return arr
 
-        # find the node for replacement
+    def bfs_r(self, q_arr, arr):
+        if len(q_arr) == 0:
+            return arr
+
+        current_node = q_arr.pop(0)
+        arr.append(current_node.value)
+
+        if current_node.left is not None:
+            q_arr.append(current_node.left)
+
+        if current_node.right is not None:
+            q_arr.append(current_node.right)
+
+        return self.bfs_r(q_arr, arr)
+
+    def dfs_inorder(self, node, arr):
+        if node.left is not None:
+            self.dfs_inorder(node.left, arr)
+
+        arr.append(node.value)
+
+        if node.right is not None:
+            self.dfs_inorder(node.right, arr)
+
+        return arr
+
+    def dfs_preorder(self, node, arr):
+        arr.append(node.value)
+
+        if node.left is not None:
+            self.dfs_preorder(node.left, arr)
+
+        if node.right is not None:
+            self.dfs_preorder(node.right, arr)
+
+        return arr
+
+    def dfs_postorder(self, node, arr):
+        if node.left is not None:
+            self.dfs_postorder(node.left, arr)
+
+        if node.right is not None:
+            self.dfs_postorder(node.right, arr)
+
+        arr.append(node.value)
+
+        return arr
 
     def printBST(self):
         print(self.root)
@@ -104,6 +147,10 @@ myBST.insert(100)
 
 myBST.printBST()
 print(myBST.lookup(20))
-
+print(myBST.bfs())
+print(myBST.bfs_r([myBST.root], []))
 # myBST.remove(20)
 # myBST.printBST()
+print(myBST.dfs_inorder(myBST.root, []))
+print(myBST.dfs_preorder(myBST.root, []))
+print(myBST.dfs_postorder(myBST.root, []))
